@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> My Wallet </title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css')}}" 
+	media="screen,projection"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+
+ <nav>
+    <div class="nav-wrapper">
+      <a href="{{url_for('wallet')}}" class="brand-logo" id="nav_div">My Wallet<i class="material-icons">shopping_cart</i></a>
+      <!--a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a-->
+      <!-- Dropdown Trigger -->
+      <a class='dropdown-button btn hide-on-small-only' href='#' id="drop" data-activates='dropdown1' data-constrainwidth="false" > {{ current_user.username }}</a>
+
+      <!-- Dropdown Structure -->
+      <ul id='dropdown1' class='dropdown-content' style="width: 300px; top: 20px; right: 0px;" data-item-alignment="right" data-constrain-width="true" data-below-origin="true">
+        <li><a href="#" class="center-align">{{current_user.email}}</a></li>
+        <li class="divider"></li>
+         <li><a href="{{ url_for('updateemail')}}" class="center-align">Update Email</a></li>
+          <li class="divider"></li>
+          <li><a href="{{ url_for('updatepass')}}" class="center-align">Update Password</a></li>
+          <li class="divider"></li>
+        <li><a href="{{ url_for('logout')}}" class="center-align">Logout</a></li>
+      </ul>
+      <!--ul class="right hide-on-med-and-down">
+        <li><a href="{{url_for('monthNew')}}"><i class="material-icons right">bookmark</i>New Month Here</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="{{url_for('monthNew')}}"><i class="material-icons right">bookmark</i>New Month Here</a></li>
+      </ul-->
+    </div>
+  </nav>
+
+  <div class="center-align">
+    <a class='dropdown-button btn hide-on-med-and-up' href='#' id="drop" data-activates='dropdown1' data-constrainwidth="false" > {{ current_user.username }}</a>
+
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content' style="width: 300px; top: 20px; right: 0px;" data-item-alignment="right" data-constrain-width="true" data-below-origin="true">
+          <li><a href="#" class="center-align">{{current_user.email}}</a></li>
+          <li class="divider"></li>
+           <li><a href="{{ url_for('updateemail')}}" class="center-align">Update Email</a></li>
+          <li class="divider"></li>
+          <li><a href="{{ url_for('updatepass')}}" class="center-align">Update Password</a></li>
+          <li class="divider"></li>
+          <li><a href="{{ url_for('logout')}}" class="center-align">Logout</a></li>
+        </ul>
+    </div>
+
+ <div class="carousel">
+  <a class="carousel-item" href="#one!"><img src="../static/img/c1.png"></a>
+  <a class="carousel-item" href="#two!"><img src="../static/img/c2.png"></a>
+  <a class="carousel-item" href="#three!"><img src="../static/img/c3.jpg"></a>
+  <a class="carousel-item" href="#four!"><img src="../static/img/c4.png"></a>
+  <a class="carousel-item" href="#five!"><img src="../static/img/c5.png"></a>
+</div>
+
+
+<div class="center-align">
+<a href="{{url_for('monthNew')}}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a> <span id="entry" class="hide-on-med-and-down">Add New Month</span>
+</div>
+
+<h2 class="center-align"> Click a month for its details </h2>
+
+{% if error %}
+        <div class="card-panel center-align error">
+          <span class="red-text text-ligthen-2">{{error}}</span>
+        </div>
+      {% endif %}
+
+{% for i in months %}
+
+  <ul class="collection">
+    <li class="collection-item avatar">
+      <img src="../static/img/month.png" alt="" class="circle">
+      <span class="title"><a href="{{url_for('transactions', month_id = i.id )}}"> {{i.name}} {{i.year}}</a></span>
+      <p> Your opening balance for this month was Rs. <b>{{i.open_bal}}</b><br>
+      Your Current balance for this month is Rs.<b> {{i.curr_bal}} </b></p>
+      <a href="{{url_for('monthDelete', month_id = i.id)}}" class="secondary-content"><i class="material-icons" style="margin-right: 40px;">delete_forever</i></a>
+      <a href="{{url_for('monthEdit', month_id = i.id)}}" class="secondary-content"><i class="material-icons">border_color</i></a>
+    </li>
+  </ul>
+
+{%endfor%}
+
+<br>
+<br>
+<br>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js')}}"></script>
+
+
+</body>
+</html>

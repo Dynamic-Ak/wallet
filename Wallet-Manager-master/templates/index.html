@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> My Wallet </title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css')}}" 
+	media="screen,projection"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+
+ <nav>
+    <div class="nav-wrapper">
+      <a href="{{url_for('wallet')}}" class="brand-logo" id="nav_div">My Wallet<i class="material-icons">shopping_cart</i></a>
+      <!-- Modal Trigger -->
+      <a class="modal-trigger waves-effect waves-light btn hide-on-med-and-down" href="{{url_for('login')}}" id="login_button">Login/Signup</a>
+</nav>
+      
+       {% if error %}
+        <div class="card-panel center-align" id= "error">
+          <span class="red-text text-ligthen-2">{{error}}</span>
+        </div>
+      {% endif %}
+
+   <div class="carousel">
+  <a class="carousel-item" href="#one!"><img src="../static/img/c1.png"></a>
+  <a class="carousel-item" href="#two!"><img src="../static/img/c2.png"></a>
+  <a class="carousel-item" href="#three!"><img src="../static/img/c3.jpg"></a>
+  <a class="carousel-item" href="#four!"><img src="../static/img/c4.png"></a>
+  <a class="carousel-item" href="#five!"><img src="../static/img/c5.png"></a>
+</div>
+
+
+  <a class="modal-trigger waves-effect waves-light btn hide-on-large-only" href="{{url_for('login')}}" id="login_button2">Login/Signup</a>
+
+<hr style="width: 400px;">
+
+<h3 class="center-align"> Wallet Manager </h3>
+
+<hr style="width: 400px;">
+
+<p style="font-size: 22px; font-family: arial; margin-left: 50px; margin-right: 50px;"> Wallet manager is a simple application for managing your day to day wallet transactions. So that you keep track of your money being spend. <br> Many times it happens that at the end of month we wonder where we spent all our money and many times we are clueless. With Wallet manager you can keep month-wise track of your money. Wallet manager keeps you organized with your wallet. </p>
+
+<br>
+<br>
+<br>
+
+<!--Footer-->
+<footer class="page-footer" id="footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Wallet Manager</h5>
+                <p class="grey-text text-lighten-4">Use it to your needs and contribute by raising issues and sending PRs</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Contact </h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="http://github.com">Github</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.facebook.com">Facebook</a>  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © Pradeep All Rights Reserved
+            <a class="grey-text text-lighten-4 right" href="http://github.com">GitHub Link</a>
+            </div>
+          </div>
+        </footer>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/main.js')}}"></script>
+<script type="text/javascript"> 
+            $(document).ready( function() {
+              $('#error').delay(5000).fadeOut();
+            });
+          </script>
+
+
+</body>
+</html>
